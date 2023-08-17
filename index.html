@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Longest and Shortest Word Finder</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3"></script>
+  </head>
+  <body x-data="{
+     longestWord: '',
+      shortestWord: '',
+       wordLengths: ''
+    }">
+    <h1>Longest and Shortest Word Finder</h1>
+    <form @submit.prevent="fetch('/shortestWord/' + $event.target.sentence.value).then(response => response.text()).then(data => shortestWord = data)">
+      <label for="sentence">Enter a sentence:</label>
+      <input type="text" id="sentence" name="sentence" required>
+      <button x-on:click="shortestWord" x-show="shortestWord">Find shortestWord</button>
+      <p x-text="shortestWord"></p>
+    </form>
+    <form @submit.prevent="fetch('/wordLengths/' + $event.target.sentence.value).then(response => response.text()).then(data => wordLengths = data)">
+      <label for="sentence">Enter a sentence:</label>
+      <input type="text" id="sentence" name="sentence" required>
+      <button x-on:click="wordLengths" x-show="wordLengths">Find wordLengths</button>
+      <p x-text="wordLengths"></p>
+    </form>
+    <form @submit.prevent="fetch('/longestWord/' + $event.target.sentence.value).then(response => response.text()).then(data => longestWord = data)">
+        <label for="sentence">Enter a sentence:</label>
+        <input type="text" id="sentence" name="sentence" required>
+        <button x-on:click="longestWord" x-show="longestWord">Find largestWord</button>
+        <p x-text="longestWord"></p>
+      </form>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
